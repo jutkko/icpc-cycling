@@ -54,7 +54,7 @@ of the problem? There are two cases when there is only one traffic light. The
 simpler version of this is easy, if you look at the following diagram. The wavy
 lines represent the times that you cannot cross that specific distance.
 
-![oneTrafficLightCase1](/figures/oneTrafficLightCase1.jpg)
+![oneTrafficLightCase1](/figures/oneTrafficLightCase1.jpg | width = 80)
 
 # Acknowledgement
 Say thanks to Felix, Jo and Tabbi
