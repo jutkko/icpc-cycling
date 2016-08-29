@@ -49,10 +49,11 @@ v_final = v_0+a*t
 ```
 
 ## One Traffic Light
-Before digging into the more complicated examples, what about the simplest form
-of the problem? There are two cases when there is only one traffic light. The
-simpler version of this is easy, if you look at the following diagram. The wavy
-lines represent the times that you cannot cross that specific distance.
+Before digging into the more complicated examples, how about having a look the
+simplest form of the problem? There are two cases when there is only one
+traffic light. The simpler version of this is easy, if you look at the
+following diagram. The wavy lines represent the times that you cannot cross
+that specific distance.
 
 ### Case Easy
 ![oneTrafficLightCase1](/figures/oneTrafficLightCase1.jpg)
@@ -131,17 +132,57 @@ v_final = v_0+a*t
 Therefore replacing `v_final` in equation becomes
 
 ```
-v_final = s/t+at
+v_final = s/t+at/2
 ```
 
 ![sample1](/figures/sample1.jpg)
 
 We know `v` is in `[0, 14.14]`. And we want to maximise that for valid `t`.
+
 What is the range for `t` here? From the diagram, we can see the `t` will
 belong to `[g_1, g_1+g_2]` which is `[1, 2.72]`.
+Given
+
+```
+v_0 = s/t-a*t/2
+```
+
+This equation will give us the lower bound of `t`, since the value of `v_0`
+is negatively impacted by the value of `t`. Calculating that gives us
+
+```
+14.14 >= v_0 = 25/t-0.25t
+14.14 >= 25/t-0.25t
+t > 1.72
+```
+
+So the new range for `t` is `[1.72, 2.72]`
 
 ![plot](/figures/plot.jpg)
 
+The above plot is the function for `v_final`, and we know the function first
+strictly decreases and then strictly increases. To find its maximum is simple,
+a non-rigorous way would just be trying both ends. Or we can differentiate the
+function and calculate its second derivative to prove that the function has its
+local minimum. For this case, we have
+
+```
+t = 2.72 -> v_fianl = 14.99
+```
+
+```
+t = 1.72 -> v_fianl = 9.87
+```
+
+To conclude this section, we have `v_0 = 14.99` at `31` seconds! To get the
+final answer, we solve
+
+```
+185 = 14.99t+(t^2)/4
+t = 10.50
+```
+
+And `t_final = 31+10.5 = 41.5`, boom!
 
 # Acknowledgement
 Say thanks to Felix, Jo and Tabbi
