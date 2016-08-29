@@ -56,6 +56,30 @@ lines represent the times that you cannot cross that specific distance.
 
 ![oneTrafficLightCase1](/figures/oneTrafficLightCase1.jpg)
 
+Here we have the traffic light value `100 1 30`. It is obvious that we can just
+cycle pass the traffic light with full acceleration from the beginning.
+
+Let's change the above example a little, with a more general case `100 25 10`.
+
+![oneTrafficLightCase2](/figures/oneTrafficLightCase2.jpg)
+
+Things become interesting here, we have too much time to get the to traffic
+light. What do we do, do we get to the traffic light as quickly as possible and
+then wait? This would be a little stupid because we then need to start with
+velocity 0 when the light turns green. You may have guessed what I am trying to
+imply here, we want to be as fast as we can at the 100 distance, as soon as it
+turns green. I find it a little tricky to do a mathematical proof here. But the
+following diagram might make sense to you.
+
+![explainWaitCase](/figures/explainWaitCase.jpg)
+
+If we plot `v-t` graph, we know what the slope of the plot is acceleration and
+if we integrate the function we get displacement. In this case, we have a fixed
+displacement we need to cover, and we have fixed maximum slope of the plot. How
+to achieve maximum finishing speed? The red plot shows the case where we speed
+up alternatively: accelerate, constant and then accelerate... For the green
+plot wait until we are sure we can accelerate all the way.
+
 # Acknowledgement
 Say thanks to Felix, Jo and Tabbi
 
