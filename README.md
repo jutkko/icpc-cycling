@@ -1,6 +1,6 @@
 # icpc-cycling
 This is a problem from a programming competition. I came across this problem
-when trying to prepare for a competition. The problem seemed to be very
+when preparing for a programming competition. The problem seemed to be very
 straight forward at the beginning and after trying it for a few hours, it
 turned out to be super challenging. After declaring it to be too hard, I gave
 it up at the time. That was more than two years ago. But I always kept this
@@ -15,7 +15,8 @@ also don't want to waste my life waiting for traffic lights.
 All in all, being able to solve this problem means a lot to me.
 
 # Approach Explained
-TL;DR version?
+TL;DR version? It might sound obvious but not many people do it. If possible,
+don't stop completely at the traffic lights. It will slow you down!
 
 Having read the problem description, there are a few possible scenarios:
 
@@ -137,26 +138,33 @@ v_final = s/t+at/2
 
 ![sample1](/figures/sample1.jpg)
 
-We know `v` is in `[0, 14.14]`. And we want to maximise that for valid `t`.
-
-What is the range for `t` here? From the diagram, we can see the `t` will
-belong to `[g_1, g_1+g_2]` which is `[1, 2.72]`.
-Given
+We know `v` is in `[0, 14.14]`. And we want to maximise `v_final` for valid
+`t`. Given
 
 ```
 v_0 = s/t-a*t/2
 ```
 
-This equation will give us the lower bound of `t`, since the value of `v_0`
-is negatively impacted by the value of `t`. Calculating that gives us
+This equation will give us the upper and lower bounds of `t`, since the value
+of `v_0` is negatively impacted by the value of `t`. Calculating that gives us
 
 ```
-14.14 >= v_0 = 25/t-0.25t
-14.14 >= 25/t-0.25t
-t > 1.72
+0 >= v_0 = 25/t-0.25t
+0 >= 25/t-0.25t
+t <= 10
+```
+And
+
+```
+14.14 <= v_0 = 25/t-0.25t
+14.14 <= 25/t-0.25t
+t >= 1.72
 ```
 
-So the new range for `t` is `[1.72, 2.72]`
+What is the range for `t` here? From the diagram, we can see the `t` will
+belong to `[g_1, g_1+g_2]` which is `[1, 2.72]`.
+
+If we combine the two results, the new range for `t` is `[1.72, 2.72]`.
 
 ![plot](/figures/plot.jpg)
 
@@ -164,28 +172,118 @@ The above plot is the function for `v_final`, and we know the function first
 strictly decreases and then strictly increases. To find its maximum is simple,
 a non-rigorous way would just be trying both ends. Or we can differentiate the
 function and calculate its second derivative to prove that the function has its
-local minimum. For this case, we have
+local minimum. Given
 
 ```
-t = 2.72 -> v_fianl = 14.99
+v_final = s/t+at/2
+```
+
+If we substitute the end values of `t`
+
+```
+t = 1.72 -> v_final = 9.87
 ```
 
 ```
-t = 1.72 -> v_fianl = 9.87
+t = 2.72 -> v_final = 14.99
 ```
 
-To conclude this section, we have `v_0 = 14.99` at `31` seconds! To get the
+To conclude this section, we have `v_0 = 14.99` at `31` seconds. To get the
 final answer, we solve
 
 ```
+410-225 = 14.99t+(t^2)/4
 185 = 14.99t+(t^2)/4
 t = 10.50
 ```
 
-And `t_final = 31+10.5 = 41.5`, boom!
+And `t_final = 31+10.5 = 41.5`, boom! So how is this method like in practice?
+One way to get this optimal time is to first wait at origin for `1` second and
+then fully accelerate to destination!
 
-# Acknowledgement
-Say thanks to Felix, Jo and Tabbi
+### Example 2 (Sample input 2)
+For this setup, we got `200 15 15` and `225 35.1 15`. We know that we cannot
+pass the two traffic lights with full acceleration from the start (see above).
+The first light's setup is identical to the previous example. So we have `v_0`
+in `[0, 14.14]`.
+
+For `v_final` we have
+
+```
+v_final = s/t+at/2
+```
+
+![sample2](/figures/sample2.jpg)
+
+We know `v` is in `[0, 14.14]`. And we want to maximise `v_final` for valid
+`t`. Given
+
+```
+v_0 = s/t-a*t/2
+```
+
+This equation will give us the upper and lower bounds of `t`, since the value
+of `v_0` is negatively impacted by the value of `t`. Calculating that gives us
+
+```
+0 >= v_0 = 25/t-0.25t
+0 >= 25/t-0.25t
+t <= 10
+```
+
+And
+
+```
+14.14 <= v_0 = 25/t-0.25t
+14.14 <= 25/t-0.25t
+t >= 1.72
+```
+
+If we combine the two results, the new range for `t` is `[1.72, 2.72]`.
+
+What is the range for `t` here? From the diagram, we can see the `t` will
+belong to `[g_1, g_1+g_2]` which is `[5.1, 6.82]`. So the new range for `t` is
+`[5.1, 6.82]`.
+
+To get the `v_final`, we just need to try out the two end values of `t`.
+
+```
+t = 5.1 -> v_final = 6.17
+```
+
+```
+t = 6.82 -> v_final = 5.59
+```
+
+To conclude this section, we have `v_0 = 6.17` at `35.1` seconds. To get the
+final answer, we solve
+
+```
+410-225 = 6.17t+(t^2)/4
+185 = 6.17t+(t^2)/4
+t = 17.53
+```
+
+And `t_final = 35.1+17.53 = 52.63`, boom! So how is this method different from
+the above? We first wait at the origin for `1.72` seconds, we accelerate to the
+first traffic light and instantly reduce the speed to `v_0 = s/t-a*t/2 = 3.62`,
+then fully accelerate to the destination.
+
+### Example 3 (Sample input 3)
+I am too lazy to do this one now. Maybe later.
+
+## Multiple Traffic Lights
+Given the above examples, we can see how to get the time if we want to pass the
+first traffic light's first green (provided that it is possible). But
+[Example 3](https://github.com/jutkko/icpc-cycling#example-3-sample-input-3)
+tells us that might not be the optimal way. So we need to try the different
+combinations. One way to do this is devise a depth-first search on the optimal
+time, providing a aborting criteria from a random run of the algorithm.
+
+# Thanks
+Thanks to [Felix](https://github.com/felixdesouza),
+[Jo](https://github.com/js3611) and Tabbi for helping me to come up with all
+this.
 
 # Warning
 You may find the algorithm useful and would like to try it out in real life. Be
