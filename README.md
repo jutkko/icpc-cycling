@@ -59,6 +59,7 @@ that specific distance.
 
 ### Case Easy
 ![oneTrafficLightCase1](/figures/oneTrafficLightCase1.jpg)
+<img src="/figures/oneTrafficLightCase1.jpg" width=0.8\textwidth>
 
 Here we have the traffic light value `100 1 30`. It is obvious that we can just
 cycle pass the traffic light with full acceleration from the beginning.
