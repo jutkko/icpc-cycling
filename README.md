@@ -167,7 +167,7 @@ belong to `[g_1, g_1+g_2]` which is `[1, 2.72]`.
 
 If we combine the two results, the new range for `t` is `[1.72, 2.72]`.
 
-![plot](/figures/plot.jpg)
+<img src="/figures/plot.jpg" width="550">
 
 The above plot is the function for `v_final`, and we know the function first
 **strictly decreases** and then **strictly increases**. To find its maximum is
