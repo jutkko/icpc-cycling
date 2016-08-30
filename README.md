@@ -58,8 +58,7 @@ following diagram. The wavy lines represent the times that you **cannot** cross
 that specific distance.
 
 ### Case Easy
-![oneTrafficLightCase1](/figures/oneTrafficLightCase1.jpg)
-<img src="/figures/oneTrafficLightCase1.jpg" width="400">
+<img src="/figures/oneTrafficLightCase1.jpg" width="550">
 
 Here we have the traffic light value `100 1 30`. It is obvious that we can just
 cycle pass the traffic light with full acceleration from the beginning.
@@ -67,7 +66,7 @@ cycle pass the traffic light with full acceleration from the beginning.
 ### Case Hard
 Let's change the above example a little, with a more general case `100 25 10`.
 
-![oneTrafficLightCase2](/figures/oneTrafficLightCase2.jpg)
+<img src="/figures/oneTrafficLightCase2.jpg" width="550">
 
 Things become interesting here, we have too much time to get the to traffic
 light. What do we do, do we get to the traffic light as quickly as possible and
@@ -77,7 +76,7 @@ to imply here, we want to be as **fast** as we can **at** the first light, as so
 as the light turns green. I find it a little tricky to do a mathematical proof
 here. But the following diagram might make sense to you.
 
-![explainWaitCase](/figures/explainWaitCase.jpg)
+<img src="/figures/explainWaitCase.jpg" width="550">
 
 If we plot `v-t` graph, we know what the slope of the plot is acceleration and
 if we integrate the function we get displacement. In this case, we have a fixed
@@ -138,7 +137,7 @@ Therefore replacing `v_final` in equation becomes
 v_final = s/t+at/2
 ```
 
-![sample1](/figures/sample1.jpg)
+<img src="/figures/sample1.jpg" width="550">
 
 We know `v` is in `[0, 14.14]`. And we want to maximise `v_final` for valid
 `t`. Given
@@ -215,7 +214,7 @@ For `v_final` we have
 v_final = s/t+at/2
 ```
 
-![sample2](/figures/sample2.jpg)
+<img src="/figures/sample2.jpg" width="550">
 
 We know `v` is in `[0, 14.14]`. And we want to **maximise** `v_final` for valid
 `t`. Given
